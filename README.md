@@ -180,4 +180,14 @@ Customer_Churn_Prediction/
 
 This project emphasizes methodology over metrics. By combining careful EDA, leakage prevention, and business-aware evaluation, the final model provides actionable insights rather than misleading performance.
 
+---
 
+## Author
+
+**Jessica Comfort Grant**
+
+Aspiring Data Scientist | Machine Learning Enthusiast
+
+LinkedIn: www.linkedin.com/in/jessica-comfort-grant-91094b21b
+
+Feel free to connect or explore the notebook for a detailed walkthrough of the analysis and modeling process.
