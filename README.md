@@ -1,185 +1,96 @@
-# Customer Churn Prediction
+# Customer Churn Prediction (End-to-End ML Project)
 
+---
+
+## 📌 Project Overview
 Customer churn is a critical challenge for subscription-based businesses. This project builds an end-to-end machine learning pipeline to predict customer churn using demographic, service, and billing data.
 
 The goal is not only to build accurate models, but to optimize recall for churners, ensuring that at-risk customers are identified early for proactive retention.
 
 ---
 
-## 🎯 Project Objectives
-
-Perform structured Exploratory Data Analysis (EDA)
-
-Detect and prevent target leakage
-
-Engineer clean, model-ready features
-
-Build and compare baseline and advanced models
-
-Optimize decision thresholds based on business cost trade-offs
-
----
-
 ## 🗂️ Dataset
 
-**Source: Telco Customer Churn Dataset**
+- Dataset: Telco Customer Churn Dataset(Kaggle)
+- Target variable: `Churn Label`
+  - `1` → Customer churned
+  - `0` → Customer retained
 
-Target variable: Churn Label
-
-1 → Customer churned
-
-0 → Customer retained
-
-The dataset includes:
-
-Customer demographics
-
-Service subscriptions
-
-Contract details
-
-Billing and payment information
+The dataset contains customer demographics, service subscriptions, contract details, and billing information.
 
 ---
 
 ## 🔍 Exploratory Data Analysis (EDA)
 
-Key EDA steps included:
+EDA was conducted in multiple stages:
+- Dataset structure and data type inspection
+- Missing value analysis
+- Target distribution analysis (class imbalance)
+- Categorical cardinality analysis to identify:
+  - Identifier-like columns
+  - High-cardinality categorical features
+  - Potential sources of target leakage
 
-Dataset structure and data types inspection
+This step was critical in ensuring modeling decisions were based on valid, predictive features.
 
-Missing value analysis
+---
 
-Target distribution analysis (class imbalance)
+## 🧹 Data Cleaning
 
-Categorical cardinality analysis to identify:
+Based on EDA findings, the following columns were removed:
+- **Identifiers:** `CustomerID`, `Zip Code`
+- **Leakage-prone features:** `Churn Value`, `Churn Score`, `Churn Reason`, `CLTV`
+- **High-cardinality location features:** `City`, `State`, `Country`, `Lat Long`, `Latitude`, `Longitude`
 
-Identifier columns
+Additional steps included:
+- Converting `Total Charges` from string to numeric
+- Removing a small number of rows with invalid numeric values
 
-High-cardinality categorical features
+---
 
-Potential leakage sources
+## 🧠 Feature Engineering
+- Binary encoding of the target variable
+- One-hot encoding of categorical features
+- Stratified train–test split to preserve class distribution
+- Feature scaling applied where appropriate
 
-This step revealed several non-predictive and leakage-prone columns, which were removed before modeling.
+---
 
-🧹 Data Cleaning
-
-The following columns were dropped based on EDA findings:
-
-Identifiers: CustomerID, Zip Code
-
-Leakage features: Churn Value, Churn Score, Churn Reason, CLTV
-
-High-cardinality location features: City, State, Country, Lat Long, Latitude, Longitude
-
-Additional steps:
-
-Converted Total Charges from string to numeric
-
-Removed a small number of rows with invalid numeric values
-
-🧠 Feature Engineering
-
-Binary target encoding for Churn Label
-
-One-hot encoding for categorical features
-
-Train–test split with stratification
-
-Feature scaling applied only where required
-
-🤖 Models Trained
+## 🤖 Modeling Approach
 1️⃣ Logistic Regression (Baseline)
-
-Purpose:
-
-Establish a simple, interpretable baseline
-
-Performance highlights:
-
-Accuracy: ~81%
-
-Churn Recall: ~60%
-
-This model performed reasonably but missed a significant portion of churners.
+- Used as a simple, interpretable baseline
+- Achieved reasonable accuracy
+- Reached ~60% recall for churners
+- Highlighted the limitations of linear models for this problem
 
 2️⃣ Random Forest Classifier
+- Captured non-linear relationships and feature interactions
+- Evaluated using ROC–AUC to assess class separability
+- Initially underperformed at the default decision threshold due to class imbalance
 
-Enhancements:
+---
 
-Captured non-linear relationships
+## 📈 Threshold Tuning & Evaluation
 
-Used class weighting to address imbalance
+- ROC–AUC: `0.84`, indicating strong separability between churners and non-churners
+- Decision threshold adjusted from 0.5 to 0.35 to prioritize recall
 
-Initial performance at default threshold (0.5):
+Final Results (Threshold-Tuned Random Forest)
+| Metric (Churn Class) | Value |
+|:----|----:|
+| Precision	| 0.55 |
+| Recall |	0.71 |
+| F1-score	| 0.62 |
 
-Recall was lower than Logistic Regression
+This adjustment significantly improved the model’s ability to identify at-risk customers, which is critical in churn prevention scenarios.
 
-However, further evaluation revealed strong separability.
+---
 
-📈 Model Evaluation & Threshold Tuning
+## 🏆 Key Takeaways
 
-ROC–AUC: 0.84 (strong discriminative ability)
-
-Decision threshold tuned from 0.5 → 0.35
-
-Final Threshold-Tuned Random Forest Results
-Metric	Churn Class (1)
-Precision	0.55
-Recall	0.71
-F1-score	0.62
-
-📌 Business interpretation:
-The tuned model identifies ~71% of churners, significantly reducing false negatives. Although false positives increase, this trade-off is acceptable in churn prevention scenarios where missing at-risk customers is more costly.
-
-🏆 Final Model Choice
-
-Threshold-tuned Random Forest was selected as the final model because:
-
-It achieves the highest churn recall
-
-It maintains a strong ROC–AUC
-
-It aligns better with real-world business objectives
-
-🛠️ Tech Stack
-
-Python
-
-pandas, NumPy
-
-scikit-learn
-
-matplotlib, seaborn
-
-Jupyter Notebook
-
-📁 Project Structure
-Customer_Churn_Prediction/
-│
-├── Data/
-│   └── Telco_customer_churn.xlsx
-│
-├── notebooks/
-│   └── customer_churn_analysis.ipynb
-│
-├── requirements.txt
-├── .gitignore
-└── README.md
-
-🚀 Key Takeaways
-
-Perfect metrics are often a red flag
-
-Early detection of data leakage is critical
-
-ROC–AUC and recall are more meaningful than accuracy for churn
-
-Threshold tuning can dramatically improve business value
-
-📬 Contact
-
-Jessica Comfort Grant
-Aspiring Data Scientist | Machine Learning Enthusiast
-
-Feel free to connect or explore the notebook for a detailed walkthrough of the analysis and modeling process.
+- Perfect accuracy is often a warning sign, not a success
+- Early detection of target leakage is essential
+- Accuracy alone is misleading for imbalanced datasets
+- ROC–AUC and recall are more informative for churn problems
+- Threshold tuning can deliver substantial business value
+- Model selection should be driven by cost-sensitive objectives
