@@ -1,0 +1,29 @@
+# Virtual environments
+env/
+venv/
+.venv/
+Customer-Churn/
+Bias-Variance/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code settings
+.vscode/
+
+# Logs
+*.log
+
+# Data files (optional – comment out if you want to track data)
+# *.csv
+# *.xlsx
