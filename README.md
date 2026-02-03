@@ -101,49 +101,48 @@ This adjustment significantly improved the model’s ability to identify at-risk
 ## ▶️ How to Run This Project
 
 1. **Clone the Repository**
-```bash
-git clone https://github.com/JessicaComfortGrant/Customer_Churn_Prediction.git
-```
+    ```bash
+      git clone https://github.com/JessicaComfortGrant/Customer_Churn_Prediction.git
+    ```
 
 2. **Navigate into the project folder:**
-```bash
-cd Customer_Churn_Prediction
-```
+    ```bash
+      cd Customer_Churn_Prediction
+    ```
 
  3. **Set Up a Virtual Environment (Optional but Recommended)**
-```bash
-python -m venv venv
-```
+    ```bash
+      python -m venv venv
+    ```
 
 4. **Activate the environment:**
 
-- Windows
-```bash
-venv\Scripts\activate
-```
+    - Windows
+   ```bash
+    venv\Scripts\activate
+    ```
 
-- macOS / Linux
-```bash
-source venv/bin/activate
-```
+    - macOS / Linux
+   ```bash
+    source venv/bin/activate
+   ```
 
 5. **Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
+    ```bash
+      pip install -r requirements.txt
+    ```
 
 6. **Run the Notebook**
+   
+   Launch Jupyter Notebook:
+   ```bash
+      jupyter notebook
+   ```
 
-Launch Jupyter Notebook:
-
-```bash
-jupyter notebook
-```
-
-Open:
-```bash
-notebooks/customer_churn_analysis.ipynb
-```
+    Open:
+    ```bash
+      notebooks/customer_churn_analysis.ipynb
+    ```
 
 7. **Run all cells top to bottom to reproduce the analysis and results.**
 
