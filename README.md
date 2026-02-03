@@ -57,13 +57,14 @@ Additional steps included:
 ---
 
 ## 🤖 Modeling Approach
-1️⃣ Logistic Regression (Baseline)
+1️⃣ **Logistic Regression (Baseline)**
 - Used as a simple, interpretable baseline
 - Achieved reasonable accuracy
 - Reached ~60% recall for churners
 - Highlighted the limitations of linear models for this problem
 
-2️⃣ Random Forest Classifier
+
+2️⃣ **Random Forest Classifier**
 - Captured non-linear relationships and feature interactions
 - Evaluated using ROC–AUC to assess class separability
 - Initially underperformed at the default decision threshold due to class imbalance
@@ -94,3 +95,89 @@ This adjustment significantly improved the model’s ability to identify at-risk
 - ROC–AUC and recall are more informative for churn problems
 - Threshold tuning can deliver substantial business value
 - Model selection should be driven by cost-sensitive objectives
+
+---
+
+## ▶️ How to Run This Project
+
+1. **Clone the Repository**
+```bash
+git clone https://github.com/JessicaComfortGrant/Customer_Churn_Prediction.git
+```
+
+2. **Navigate into the project folder:**
+```bash
+cd Customer_Churn_Prediction
+```
+
+ 3. **Set Up a Virtual Environment (Optional but Recommended)**
+```bash
+python -m venv venv
+```
+
+4. **Activate the environment:**
+
+- Windows
+```bash
+venv\Scripts\activate
+```
+
+- macOS / Linux
+```bash
+source venv/bin/activate
+```
+
+5. **Install Dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+6. **Run the Notebook**
+
+Launch Jupyter Notebook:
+
+```bash
+jupyter notebook
+```
+
+Open:
+```bash
+notebooks/customer_churn_analysis.ipynb
+```
+
+7. **Run all cells top to bottom to reproduce the analysis and results.**
+
+---
+
+## 🛠️ Tools & Libraries
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
+
+---
+
+## 📁 Project Structure
+```powershell
+Customer_Churn_Prediction/
+│
+├── Data/
+│   └── Telco_customer_churn.xlsx
+│
+├── notebooks/
+│   └── customer_churn_analysis.ipynb
+│
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
+---
+
+## 🚀 Conclusion
+
+This project emphasizes methodology over metrics. By combining careful EDA, leakage prevention, and business-aware evaluation, the final model provides actionable insights rather than misleading performance.
+
+
